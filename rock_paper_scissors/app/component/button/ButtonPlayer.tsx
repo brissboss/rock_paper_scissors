@@ -65,6 +65,8 @@ export default function ButtonPlayer(props: ButtonPlayerProps) {
                 borderColor: color(),
                 width: props.size + 'px',
                 height: props.size + 'px',
+                transform: 'perspective(600px) rotateX(55deg)',
+                boxShadow: '10px 10px 30px rgba(0,0,0,0.5)'
             }
             }
         >
