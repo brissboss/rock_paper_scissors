@@ -1,7 +1,12 @@
 'use client'
 
-import ButtonPlayer from "@/app/component/button/ButtonPlayer"
 import { useEffect, useRef, useState } from "react"
+import Image from 'next/image'
+
+import ButtonPlayer from "@/app/component/button/ButtonPlayer"
+import leaf from '@/public/leaf.svg'
+import rock from '@/public/rock.svg'
+import scissors from '@/public/scissors.svg'
 
 type GameZoneUSerProps = {
     selectChoice: Function,
@@ -14,7 +19,7 @@ export default function GameZoneUSer(props: GameZoneUSerProps) {
     useEffect(() => {
         const updateSize = () => {
             if (divRef.current)
-                setWidth(divRef.current.clientWidth)
+                setWidth(divRef.current.clientWidth / 3.2)
         }
 
         updateSize()
@@ -30,27 +35,34 @@ export default function GameZoneUSer(props: GameZoneUSerProps) {
         <div
             ref={divRef}
             className="
-                    flex justify-between items-center
-                    w-[90%] xl:w-[50%]
+                    flex justify-between items-end
+                    w-[90%] xl:w-[60%]
 
                     mb-5
+                    h-[40%]
                 "
         >
             <ButtonPlayer
                 type="leaf"
-                size={width / 3.2}
-                action={() => sendChoice('leaf')}
-            />
+                size={width}
+                action={(choice: string) => sendChoice(choice)}
+            >
+                <Image src={leaf} alt={'leaf'} style={{width: width / 1.89, height: width / 1.89}} priority/>
+            </ButtonPlayer>
             <ButtonPlayer
                 type="rock"
-                size={width / 3.2}
-                action={() => sendChoice('rock')}
-            />
+                size={width}
+                action={(choice: string) => sendChoice(choice)}
+            >
+                <Image src={rock} alt={'rock'} style={{width: width / 1.89, height: width / 1.89}} priority/>
+            </ButtonPlayer>
             <ButtonPlayer
                 type="scissors"
-                size={width / 3.2}
-                action={() => sendChoice('scissors')}
-            />
+                size={width}
+                action={(choice: string) => sendChoice(choice)}
+            >
+                <Image src={scissors} alt={'scissors'} style={{width: width / 1.89, height: width / 1.89}} priority/>
+            </ButtonPlayer>
         </div>
     )
 }

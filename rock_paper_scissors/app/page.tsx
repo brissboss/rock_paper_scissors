@@ -15,10 +15,9 @@ export default function Home() {
     }
 
     const selectChoicePlayer = (choice: string) => {
-
         if (choice === 'leaf' || choice === 'rock' || choice === 'scissors') {
             setPlayerChoice(choice);
-            setAiChoice(aiChoiceGenerator)
+            setAiChoice(aiChoiceGenerator())
         }
         else 
             console.error("The \"choice\" variable is incorrect\n", choice)
