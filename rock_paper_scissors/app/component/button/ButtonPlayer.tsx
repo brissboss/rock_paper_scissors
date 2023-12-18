@@ -44,7 +44,7 @@ export default function ButtonPlayer(props: ButtonPlayerProps) {
 
     return (
         <div
-            onClick={props.action()}
+            onClick={() => props.action()}
             className={`
                     flex justify-center items-center
                     

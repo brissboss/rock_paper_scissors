@@ -3,7 +3,11 @@
 import ButtonPlayer from "@/app/component/button/ButtonPlayer"
 import { useEffect, useRef, useState } from "react"
 
-export default function GameZoneUSer() {
+type GameZoneUSerProps = {
+    selectChoice: Function,
+}
+
+export default function GameZoneUSer(props: GameZoneUSerProps) {
     const [width, setWidth] = useState<number>(0);
     const divRef = useRef<HTMLDivElement>(null)
 
@@ -18,6 +22,10 @@ export default function GameZoneUSer() {
         return () => window.removeEventListener('resize', updateSize)
     }, [])
 
+    const sendChoice = (choice: string) => {
+        props.selectChoice(choice)
+    }
+
     return (
         <div
             ref={divRef}
@@ -31,17 +39,17 @@ export default function GameZoneUSer() {
             <ButtonPlayer
                 type="leaf"
                 size={width / 3.2}
-                action={console.log}
+                action={() => sendChoice('leaf')}
             />
             <ButtonPlayer
                 type="rock"
                 size={width / 3.2}
-                action={console.log}
+                action={() => sendChoice('rock')}
             />
             <ButtonPlayer
                 type="scissors"
                 size={width / 3.2}
-                action={console.log}
+                action={() => sendChoice('scissors')}
             />
         </div>
     )
