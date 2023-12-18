@@ -38,8 +38,7 @@ export default function GameZoneUSer(props: GameZoneUSerProps) {
                     flex justify-between items-end
                     w-[90%] xl:w-[60%]
 
-                    mb-5
-                    h-[40%]
+                    h-[30%]
                 "
         >
             <ButtonPlayer

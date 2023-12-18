@@ -35,7 +35,7 @@ export default function ButtonPlayer(props: ButtonPlayerProps) {
     return (
         <div 
             className="
-                hover:mb-10 
+                hover:pb-10 
                 duration-200 
                 cursor-pointer
             "
@@ -58,12 +58,14 @@ export default function ButtonPlayer(props: ButtonPlayerProps) {
                     borderColor: color(),
                     width: props.size + 'px',
                     height: props.size + 'px',
-                    transform: 'perspective(600px) rotateX(70deg)',
+                    transform: 'perspective(600px) rotateX(68deg)',
                     boxShadow: '10px 10px 30px rgba(0,0,0,0.5)'
                 }
                 }
             >
-                {props.children}
+                <div>
+                    {props.children}
+                </div>
             </div>
         </div>
     )
