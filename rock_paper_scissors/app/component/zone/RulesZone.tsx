@@ -22,14 +22,15 @@ function Beat(props: BeatProps) {
     return (
         <div 
             className="
-                flex justify-center items-center space-x-3 text-lg mb-10
+                flex justify-center items-center 
+                space-x-5 text-lg mb-10
             "
         >
             <div>{props.pronoun[0] ? props.pronoun[0] : 'la'}</div>
             <div>
                 <ResultModule
                     type={props.nameChalOne}
-                    size={256 / 5.8}
+                    size={256 / 4.5}
                 >
                     {props.chalOne}
                 </ResultModule>
@@ -40,7 +41,7 @@ function Beat(props: BeatProps) {
             <div>
                 <ResultModule
                     type={props.nameChalTwo}
-                    size={256 / 5.8}
+                    size={256 / 4.5}
                 >
                     {props.chalTwo}
                 </ResultModule>

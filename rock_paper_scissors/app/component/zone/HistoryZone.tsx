@@ -6,10 +6,11 @@ import rock from '@/public/rock.svg'
 import scissors from '@/public/scissors.svg'
 
 import ZoneTemplate from "./ZoneTemplate"
-import { getGoodStorage } from "@/app/utils/getGoodStorage"
+import { getGoodStorage } from "@/app/utils/localStorage"
 import wichWin from "@/app/utils/wichWin"
 import ResultModule from "../ResultModule"
 import Title from "../text/title"
+import ButtonPrimary from "../button/ButtonPrimary"
 
 type HistoryLineProps = {
     playerChoice: string,
@@ -50,6 +51,7 @@ function HistoryLine(props: HistoryLineProps) {
             ref={divRef}
             className="
                 flex justify-between py-2
+                text-base sm:text-3xl 2xl:text-base
             "
         >
             <div className="flex justify-center items-center w-[33%]">
@@ -109,19 +111,33 @@ function History() {
 
 type HistoryZoneProps = {
     keyHistory: number
+    largeWidth?: boolean,
+    otherStyleDiv?: string
 }
 
 export default function HistoryZone(props: HistoryZoneProps) {
+    const [keyClear, setKeyClear] = useState<number>(0);
+
+    const clearLocalStorage = () => {
+        localStorage.clear()
+        setKeyClear(prevKey => prevKey + 1)
+    }
+
     return (
         <ZoneTemplate
             keyDiv={props.keyHistory}
+            largeWidth={props.largeWidth}
+            otherDivStyle={props.otherStyleDiv}
         >
             <Title content="Historique"/>
                 <div className="flex justify-between py-4">
                     <p className="w-[33%] text-center text-xl font-medium">Vous</p>
                     <p className="w-[33%] text-center text-xl font-medium">IA</p>
                 </div>
-            <History/>
+            <History key={keyClear}/>
+            <div className="flex justify-center py-4">
+                <ButtonPrimary name="Remetre a zéro" action={() => clearLocalStorage()}/>
+            </div>
         </ZoneTemplate>
     )
 }

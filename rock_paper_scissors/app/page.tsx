@@ -1,18 +1,22 @@
 'use client'
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 import GameZoneUSer from "./component/zone/GameZone"
 import HistoryZone from "./component/zone/HistoryZone"
 import RulesZone from "./component/zone/RulesZone"
 import Result from "./component/zone/result/ResultZone"
 import NewGameZone from "./component/zone/NewGameZone"
+import ButtonPrimary from "./component/button/ButtonPrimary"
 
 export default function Home() {
     const [openResult, setOpenResult] = useState<boolean>(false)
     const [playerChoice, setPlayerChoice] = useState<string>("")
     const [aiChoice, setAiChoice] = useState<string>("")
     const [keyHistory, setKeyHistory] = useState<number>(0)
+
+    const router = useRouter()
 
     const aiChoiceGenerator = () => {
         const choices = ['leaf', 'rock', 'scissors'];
@@ -37,15 +41,23 @@ export default function Home() {
         setOpenResult(false)
     }
 
+    const openHistory = () => {
+        router.push('/history')
+    }
+
     return (
         <div
             className="
                 flex flex-col justify-between items-center 
                 h-[100dvh] w-full
 
+                overflow-hidden
                 relative
             "
         >
+            <div className="2xl:hidden pt-4">
+                <ButtonPrimary name="Historique" action={() => openHistory()}/>
+            </div>
             <div
                 className="
                     flex justify-center 2xl:justify-between
@@ -53,6 +65,7 @@ export default function Home() {
                     h-[65%]
                 "
             >
+
                 <RulesZone />
                 {!openResult ? 
                     <NewGameZone/>
@@ -67,7 +80,14 @@ export default function Home() {
             {!openResult ?
                 <GameZoneUSer selectChoice={(choice: string) => selectChoicePlayer(choice)} />
                 :
-                <div onClick={() => replay()} className="bg-red-500 px-2 py-1 mb-10 rounded-md cursor-pointer">Rejouer ?</div>
+                <div 
+                    className="
+                        flex justify-center items-center
+                        w-full h-[30%]
+                    "
+                >
+                    <ButtonPrimary name="Rejouer ?" action={() => replay()}/>
+                </div>
             }
         </div>
     )

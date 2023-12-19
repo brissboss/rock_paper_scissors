@@ -93,11 +93,9 @@ export default function ResultZone(props: ResultZoneProps) {
                     className="
                         flex justify-center items-center
                         h-1/3
-
                         text-[3rem] lg:text-[5rem]
 
                         animate-text
-
                     "
                 >
                     <Result/>
