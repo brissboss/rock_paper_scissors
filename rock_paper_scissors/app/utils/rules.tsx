@@ -4,17 +4,17 @@ import scissors from '@/public/scissors.svg'
 import dynamite from '@/public/dynamite.svg'
 
 export const choices = {
-    'leaf': {
-        name: 'leaf',
-        color: '#FF3636',
-        image: leaf,
-        win: ['rock']
-    },
     'rock': {
         name: 'rock',
-        color: '#FFC436',
+        color: '#FF3636',
         image: rock,
         win: ['scissors']
+    },
+    'leaf': {
+        name: 'leaf',
+        color: '#FFC436',
+        image: leaf,
+        win: ['rock']
     },
     'scissors': {
         name: 'scissors',
@@ -22,12 +22,12 @@ export const choices = {
         image: scissors,
         win: ['leaf'],
     },
-    'dynamite': {
-        name: 'dynamite',
-        color: '#000',
-        image: dynamite,
-        win: ['leaf', 'rock', 'scissors']
-    }
+    // 'dynamite': {
+    //     name: 'dynamite',
+    //     color: '#000',
+    //     image: dynamite,
+    //     win: ['leaf', 'rock', 'scissors']
+    // }
 }
 
 export function wichWin(player: string, ai: string) {

@@ -11,22 +11,11 @@ type ResultModuleProps = {
 
     // 'left' or 'right'
     direction: string
+
+    color: string
 }
 
 export default function ResultModule(props: ResultModuleProps) {
-    const color = () => {
-        switch (props.type) {
-            case 'leaf':
-                return '#FF3636'
-            case 'rock':
-                return '#FFC436'
-            case 'scissors':
-                return '#2DBE44'
-            default:
-                return 'red'
-        }
-    }
-    
     return (
         <div
             className={`
@@ -39,7 +28,7 @@ export default function ResultModule(props: ResultModuleProps) {
             `}
             style={{
                 borderWidth: props.size / 10 + 'px',
-                borderColor: color(),
+                borderColor: props.color,
                 height: props.size + 'px',
             }}
         >

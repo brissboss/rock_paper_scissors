@@ -1,6 +1,6 @@
 'use client'
 
-import HistoryZone from "../component/zone/HistoryZone"
+import HistoryZone from "../component/zone/historyZone/HistoryZone"
 
 export default function HistoryPage() {
     return (

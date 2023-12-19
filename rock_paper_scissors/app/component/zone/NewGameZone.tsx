@@ -18,7 +18,7 @@ export default function NewGameZone() {
             "   
         >
             <Title content="Pierre Feuille Ciseaux"/>
-            <p className="flex justify-center items-center text-center h-full text-[1.5rem]">Pour faire une partie faite votre choix parmis les 3 bouttons ci dessous</p>
+            <p className="flex justify-center items-center text-center h-full text-[1.5rem]">Pour faire une partie faite votre choix parmis les boutons ci dessous</p>
         </ZoneTemplate>
     )
 }

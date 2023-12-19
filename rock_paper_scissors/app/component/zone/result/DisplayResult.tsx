@@ -93,6 +93,7 @@ export default function ResultZone(props: ResultZoneProps) {
                     <ResultModule
                         type={props.playerChoice}
                         size={width}
+                        color={choices[props.playerChoice as keyof typeof choices] ? choices[props.playerChoice as keyof typeof choices].color : '#fff'}
                         direction="left"
                     >
                         {imageUser(props.playerChoice)}
@@ -109,6 +110,7 @@ export default function ResultZone(props: ResultZoneProps) {
                     <ResultModule
                         type={props.aiChoice}
                         size={width}
+                        color={choices[props.aiChoice as keyof typeof choices] ? choices[props.aiChoice as keyof typeof choices].color : '#fff'}
                         direction="right"
                     >
                         {imageUser(props.aiChoice)}

@@ -1,5 +1,4 @@
-
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 
 type ButtonPlayerProps = {
     children: ReactNode
@@ -18,42 +17,50 @@ type ButtonPlayerProps = {
 }
 
 export default function ButtonPlayer(props: ButtonPlayerProps) {
+    const [mouseIn, setMouseIn] = useState<boolean>(false)
+
+    const mouseEnter = () => {
+        if (!props.static)
+            setMouseIn(!mouseIn)
+    }
 
     const handleClick = () => {
         if (props.action)
             props.action(props.type)
     }
 
+    const style = {
+        borderWidth: props.size / 10 + 'px',
+        borderColor: props.color,
+        width: props.size + 'px',
+        height: props.size + 'px',
+    }
+
+    const shadow = !mouseIn ? { boxShadow: '0px 0px 0px 0px #000' } : { backgroundColor: props.color }
+
     return (
         <div 
             className={`
-                duration-200 
-                ${!props.static && 'hover:bg-red-200 cursor-pointer mb-8 mx-2.5'}
+                ${!props.static && 'mb-8 mx-2.5'}
             `}
         >
             <div
                 onClick={handleClick}
+                onMouseEnter={mouseEnter}
+                onMouseLeave={mouseEnter}
                 className={`
                     flex justify-center items-center
                     
                     rounded-full
                     
                     bg-white 
-                    shadow-lg
 
-                    transition-all
+                    transition-all duration-200
+                    ${!props.static && 'cursor-pointer'}
                 `}
-                style={{
-                    borderWidth: props.size / 10 + 'px',
-                    borderColor: props.color,
-                    width: props.size + 'px',
-                    height: props.size + 'px',
-                }
-                }
+                style={{...style, ...shadow}}
             >
-                <div>
-                    {props.children}
-                </div>
+                {props.children}
             </div>
         </div>
     )
