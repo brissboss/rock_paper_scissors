@@ -34,26 +34,23 @@ export default function GameZoneUSer(props: GameZoneUSerProps) {
             ref={divRef}
             className="
                     flex justify-between items-end
-                    w-[90%] xl:w-[60%]
-
-                    h-[30%]
+                    w-[90%] xl:w-[60%] h-[30%]
                     pt-10
-
                 "
         >
             <div
                 className="
                     flex flex-wrap items-center justify-center
-                    h-full w-full overflow-auto
-
+                    h-full w-full 
                     px-4
+                    overflow-auto
                 "
             >
                 {Object.values(choices).map((item, index) => {
                     return (
                         <ButtonPlayer
                             type={item.name}
-                            size={width}
+                            size={width < 100 ? 80 : width}
                             color={item.color}
                             action={(choice: string) => sendChoice(choice)}
                             key={index}

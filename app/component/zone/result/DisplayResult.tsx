@@ -10,15 +10,17 @@ type ResultZoneProps = {
 }
 
 export default function ResultZone(props: ResultZoneProps) {
-    console.log(props.playerChoice, props.aiChoice)
+    const [width, setWidth] = useState<number>(0)
 
-    const [width, setWidth] = useState<number>(0);
     const divRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         const updateSize = () => {
             if (divRef.current) {
-                setWidth(divRef.current.clientWidth / 3.2)
+                if (window.innerWidth > 760 && window.innerWidth < 1535)
+                    setWidth(divRef.current.clientWidth / 6)
+                else
+                    setWidth(divRef.current.clientWidth / 3.2)
             }
         }
 
@@ -28,17 +30,13 @@ export default function ResultZone(props: ResultZoneProps) {
     }, [])
 
     const imageUser = (choice: string) => {
-        if (choice in choices) {
-            const choiceItem = choices[choice as keyof typeof choices]
-    
-            return <Image src={choiceItem.image} alt={choice} width={0} height={0} style={{width: width / 1.89, height: width / 1.89}} priority/>
-        } 
-        else {
+        if (choice in choices)
+            return <Image src={choices[choice as keyof typeof choices].image} alt={choice} width={0} height={0} style={{width: width / 1.89, height: width / 1.89}} priority/>
+        else 
             return <div className="text-red-500">Error</div>
-        }
     }
 
-    const Result = () => {
+    const GetTitle = () => {
         switch (wichWin(props.playerChoice, props.aiChoice)) {
             case 0:
                 return <p className="text-[#FF3636]">Perdu</p>                
@@ -47,7 +45,7 @@ export default function ResultZone(props: ResultZoneProps) {
             case 2:
                 return <p className="text-[#FFC436]">Égalité</p>
             default:
-                return null
+                return <p className="text-[#FF3636]">ERROR</p>
         }
     }
 
@@ -56,9 +54,7 @@ export default function ResultZone(props: ResultZoneProps) {
             className="
                 w-full h-full
                 flex flex-col justify-center items-center
-
                 relative
-
                 overflow-hidden
             "
         >
@@ -66,8 +62,7 @@ export default function ResultZone(props: ResultZoneProps) {
                 ref={divRef}
                 className="
                     flex flex-col justify-start 
-                    w-[90%] xl:w-[60%]
-                    h-full
+                    w-[90%] xl:w-[60%] h-full
                 "
             >
                 <div 
@@ -75,11 +70,10 @@ export default function ResultZone(props: ResultZoneProps) {
                         flex justify-center items-center
                         h-1/3
                         text-[3rem] lg:text-[5rem]
-
                         animate-text
                     "
                 >
-                    <Result/>
+                    <GetTitle/>
                 </div>
 
                 <div

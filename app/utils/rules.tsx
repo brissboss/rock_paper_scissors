@@ -3,6 +3,21 @@ import rock from '@/public/rock.svg'
 import scissors from '@/public/scissors.svg'
 import dynamite from '@/public/dynamite.svg'
 
+/* 
+To add a game element:
+
+import the image like this 'import [imageName] from [urlImage]'.
+
+And add your new element to the 'choices' variable like this 
+
+'[elemName]': {
+    name: [elemName],
+    color: [borderColorButton],
+    image: [image],
+    win: [table containing all the other elements against which it can win]
+},
+*/
+
 export const choices = {
     'rock': {
         name: 'rock',
@@ -30,6 +45,13 @@ export const choices = {
     // }
 }
 
+/*
+    check which wins
+
+    return 0 if the user lose
+    return 1 if the user win
+    return 2 if equal
+*/
 export function wichWin(player: string, ai: string) {
     if (player === ai) 
         return 2
@@ -43,6 +65,5 @@ export function wichWin(player: string, ai: string) {
         }
     }
 
-    
     return 0
 }

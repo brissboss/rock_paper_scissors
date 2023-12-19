@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 import ZoneTemplate from "../ZoneTemplate"
-import Title from "../../text/title"
+import Title from "../../text/Title"
 import ButtonPrimary from "../../button/ButtonPrimary"
 import History from "./History"
 

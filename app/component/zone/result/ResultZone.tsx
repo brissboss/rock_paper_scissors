@@ -20,7 +20,6 @@ export default function Result(props: ResultProps) {
                 py-2
                 overflow-auto
                 text-white
-
                 border-[5px] border-white
             "    
         >

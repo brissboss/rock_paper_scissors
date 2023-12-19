@@ -1,4 +1,4 @@
-import { ReactNode, RefObject } from 'react'
+import { ReactNode } from 'react'
 
 type ResultModuleProps = {
     children: ReactNode
@@ -20,7 +20,6 @@ export default function ResultModule(props: ResultModuleProps) {
         <div
             className={`
                 flex justify-center items-center
-                
                 ${props.direction === 'left' ? 'rounded-r-full' : 'rounded-l-full'}
 
                 bg-white 

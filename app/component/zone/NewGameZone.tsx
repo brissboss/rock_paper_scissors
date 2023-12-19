@@ -1,4 +1,4 @@
-import Title from "../text/title"
+import Title from "../text/Title"
 import ZoneTemplate from "./ZoneTemplate"
 
 export default function NewGameZone() {
@@ -18,7 +18,15 @@ export default function NewGameZone() {
             "   
         >
             <Title content="Pierre Feuille Ciseaux"/>
-            <p className="flex justify-center items-center text-center h-full text-[1.5rem]">Pour faire une partie faite votre choix parmis les boutons ci dessous</p>
+            <p 
+                className="
+                    flex justify-center items-center 
+                    h-full 
+                    text-center text-[1.5rem]
+                "
+            >
+                Pour faire une partie faite votre choix parmis les boutons ci dessous
+            </p>
         </ZoneTemplate>
     )
 }

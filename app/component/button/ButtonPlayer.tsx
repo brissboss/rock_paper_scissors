@@ -13,13 +13,14 @@ type ButtonPlayerProps = {
 
     action?: Function
 
+    // if true all hover and click functions are disabled
     static?: boolean
 }
 
 export default function ButtonPlayer(props: ButtonPlayerProps) {
     const [mouseIn, setMouseIn] = useState<boolean>(false)
 
-    const mouseEnter = () => {
+    const hoverButton = () => {
         if (!props.static)
             setMouseIn(!mouseIn)
     }
@@ -39,20 +40,15 @@ export default function ButtonPlayer(props: ButtonPlayerProps) {
     const shadow = !mouseIn ? { boxShadow: '0px 0px 0px 0px #000' } : { backgroundColor: props.color }
 
     return (
-        <div 
-            className={`
-                ${!props.static && 'mb-8 mx-2.5'}
-            `}
-        >
+        <div className={` ${!props.static && 'mb-8 mx-2.5'} `}>
             <div
                 onClick={handleClick}
-                onMouseEnter={mouseEnter}
-                onMouseLeave={mouseEnter}
+                onMouseEnter={hoverButton}
+                onMouseLeave={hoverButton}
                 className={`
                     flex justify-center items-center
-                    
-                    rounded-full
-                    
+                
+                    rounded-full                    
                     bg-white 
 
                     transition-all duration-200

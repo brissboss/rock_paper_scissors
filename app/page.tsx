@@ -24,7 +24,6 @@ export default function Home() {
         const keys = Object.keys(choices) as Array<keyof typeof choices>;
         const randomKey = keys[Math.floor(Math.random() * keys.length)];
         return choices[randomKey].name;
-        
     }
 
     const selectChoicePlayer = (choice: string) => {
@@ -40,13 +39,9 @@ export default function Home() {
             console.error("The \"choice\" variable is incorrect\n", choice)
     }
 
-    const replay = () => {
-        setOpenResult(false)
-    }
+    const replay = () => { setOpenResult(false) }
 
-    const openHistory = () => {
-        router.push('/history')
-    }
+    const openHistory = () => { router.push('/history') }
 
     return (
         <div
@@ -54,32 +49,24 @@ export default function Home() {
                 flex flex-col justify-between items-center 
                 h-[100dvh] w-full
 
-                overflow-hidden
-                relative
+                overflow-hidden relative
             "
         >
             <div className="2xl:hidden pt-4">
                 <ButtonPrimary name="Historique" action={() => openHistory()}/>
             </div>
+            
             <div
                 className="
                     flex justify-center 2xl:justify-between
-                    w-[90%] 2xl:w-[100%]
-                    h-[65%]
+                    w-[90%] 2xl:w-[100%] h-[65%]
                 "
             >
-
                 <RulesZone />
-                {!openResult ? 
-                    <NewGameZone/>
-                    :
-                    <Result 
-                        playerChoice={playerChoice}
-                        aiChoice={aiChoice}
-                    />
-                }
+                { !openResult ? <NewGameZone/> : <Result playerChoice={playerChoice} aiChoice={aiChoice}/> }
                 <HistoryZone keyHistory={keyHistory}/>
             </div>
+
             {!openResult ?
                 <GameZoneUSer selectChoice={(choice: string) => selectChoicePlayer(choice)} />
                 :
