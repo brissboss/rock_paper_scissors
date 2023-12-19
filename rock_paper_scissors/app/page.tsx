@@ -3,29 +3,32 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 
-import GameZoneUSer from "./component/zone/GameZone"
+import GameZoneUSer from "./component/zone/gameZone/GameZone"
 import HistoryZone from "./component/zone/HistoryZone"
 import RulesZone from "./component/zone/RulesZone"
 import Result from "./component/zone/result/ResultZone"
 import NewGameZone from "./component/zone/NewGameZone"
 import ButtonPrimary from "./component/button/ButtonPrimary"
 
+import { choices } from "./utils/rules"
+
 export default function Home() {
     const [openResult, setOpenResult] = useState<boolean>(false)
     const [playerChoice, setPlayerChoice] = useState<string>("")
-    const [aiChoice, setAiChoice] = useState<string>("")
+    const [aiChoice, setAiChoice] = useState<string>('')
     const [keyHistory, setKeyHistory] = useState<number>(0)
 
     const router = useRouter()
 
     const aiChoiceGenerator = () => {
-        const choices = ['leaf', 'rock', 'scissors'];
-
-        return choices[Math.floor(Math.random() * choices.length)]
+        const keys = Object.keys(choices) as Array<keyof typeof choices>;
+        const randomKey = keys[Math.floor(Math.random() * keys.length)];
+        return choices[randomKey].name;
+        
     }
 
     const selectChoicePlayer = (choice: string) => {
-        if (choice === 'leaf' || choice === 'rock' || choice === 'scissors') {
+        if (Object.values(choices).map((item) => item.name.includes(choice))) {
             const res = aiChoiceGenerator()
             localStorage.setItem('match-' + localStorage.length.toString(), choice + '/' + res)
             setPlayerChoice(choice)

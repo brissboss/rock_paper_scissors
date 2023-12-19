@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 
-import leaf from '@/public/leaf.svg'
-import rock from '@/public/rock.svg'
-import scissors from '@/public/scissors.svg'
-
+import { choices , wichWin} from "@/app/utils/rules"
 import ZoneTemplate from "./ZoneTemplate"
 import { getGoodStorage } from "@/app/utils/localStorage"
-import wichWin from "@/app/utils/wichWin"
 import ResultModule from "../ResultModule"
+
+import ButtonPlayer from "../button/ButtonPlayer"
+
 import Title from "../text/title"
 import ButtonPrimary from "../button/ButtonPrimary"
 
@@ -34,15 +33,13 @@ function HistoryLine(props: HistoryLineProps) {
     }, [])
 
     const imageResult = (choice: string) => {
-        switch (choice) {
-            case 'leaf':
-                return <Image src={leaf} alt={'leaf'} style={{width: width / 1.89, height: width / 1.89}} priority/>
-            case 'rock':
-                return <Image src={rock} alt={'rock'} style={{width: width / 1.89, height: width / 1.89}} priority/>
-            case 'scissors':
-                return <Image src={scissors} alt={'scissors'} style={{width: width / 1.89, height: width / 1.89}} priority/>
-            default:
-                return <Image src={leaf} alt={'leaf'} style={{width: width / 1.89, height: width / 1.89}} priority/>
+        if (choice in choices) {
+            const choiceItem = choices[choice as keyof typeof choices]
+    
+            return <Image src={choiceItem.image} alt={choice} width={0} height={0} style={{width: width / 1.89, height: width / 1.89}} priority/>
+        } 
+        else {
+            return <div className="text-red-500">Error</div>
         }
     }
 
@@ -55,12 +52,14 @@ function HistoryLine(props: HistoryLineProps) {
             "
         >
             <div className="flex justify-center items-center w-[33%]">
-                <ResultModule
+                <ButtonPlayer
                     type={props.playerChoice}
                     size={width / 8}
+                    color={choices[props.playerChoice as keyof typeof choices] ? choices[props.playerChoice as keyof typeof choices].color : '#fff'}
+                    static
                 >
                     {imageResult(props.playerChoice)}
-                </ResultModule>
+                </ButtonPlayer>
             </div>
             <div className="flex justify-center items-center w-[33%]">
                 {wichWin(props.playerChoice, props.aiChoice) === 1 && <p>Gagner</p>}
@@ -68,12 +67,14 @@ function HistoryLine(props: HistoryLineProps) {
                 {wichWin(props.playerChoice, props.aiChoice) === 2 && <p>Égalité</p>}
             </div>
             <div className="flex justify-center items-center w-[33%]">
-                <ResultModule
+                <ButtonPlayer
                     type={props.aiChoice}
-                    size={width / 8}                  
+                    size={width / 8}
+                    color={choices[props.aiChoice as keyof typeof choices] ? choices[props.aiChoice as keyof typeof choices].color : '#fff'}
+                    static
                 >
                     {imageResult(props.aiChoice)}
-                </ResultModule>
+                </ButtonPlayer>
             </div>
         </div>
     )

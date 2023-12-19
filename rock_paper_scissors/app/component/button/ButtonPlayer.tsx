@@ -10,35 +10,26 @@ type ButtonPlayerProps = {
     // in px
     size: number
 
-    action: Function
+    color: string
+
+    action?: Function
+
+    static?: boolean
 }
 
 export default function ButtonPlayer(props: ButtonPlayerProps) {
 
-    const color = () => {
-        switch (props.type) {
-            case 'leaf':
-                return '#FF3636'
-            case 'rock':
-                return '#FFC436'
-            case 'scissors':
-                return '#2DBE44'
-            default:
-                return 'red'
-        }
-    }
-
     const handleClick = () => {
-        props.action(props.type)
+        if (props.action)
+            props.action(props.type)
     }
 
     return (
         <div 
-            className="
-                hover:pb-10 
+            className={`
                 duration-200 
-                cursor-pointer
-            "
+                ${!props.static && 'hover:bg-red-200 cursor-pointer mb-8 mx-2.5'}
+            `}
         >
             <div
                 onClick={handleClick}
@@ -51,15 +42,12 @@ export default function ButtonPlayer(props: ButtonPlayerProps) {
                     shadow-lg
 
                     transition-all
-                    cursor-pointer
                 `}
                 style={{
                     borderWidth: props.size / 10 + 'px',
-                    borderColor: color(),
+                    borderColor: props.color,
                     width: props.size + 'px',
                     height: props.size + 'px',
-                    transform: 'perspective(600px) rotateX(68deg)',
-                    boxShadow: '10px 10px 30px rgba(0,0,0,0.5)'
                 }
                 }
             >

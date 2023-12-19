@@ -2,23 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import Image from 'next/image'
 
 import ResultModule from "./ResultModule";
-import leaf from '@/public/leaf.svg'
-import rock from '@/public/rock.svg'
-import scissors from '@/public/scissors.svg'
-
-function wichWin(player: string, ai: string) {
-    if (player === ai) 
-        return 2
-
-    if ((player === 'rock' && ai === 'scissors') ||
-        (player === 'scissors' && ai === 'leaf') ||
-        (player === 'leaf' && ai === 'rock')
-    ) {
-        return 1
-    }
-    
-    return 0
-}
+import { choices, wichWin } from "@/app/utils/rules";
 
 type ResultZoneProps = {
     playerChoice: string
@@ -44,20 +28,17 @@ export default function ResultZone(props: ResultZoneProps) {
     }, [])
 
     const imageUser = (choice: string) => {
-        switch (choice) {
-            case 'leaf':
-                return <Image src={leaf} alt={'leaf'} style={{width: width / 1.89, height: width / 1.89}} priority/>
-            case 'rock':
-                return <Image src={rock} alt={'rock'} style={{width: width / 1.89, height: width / 1.89}} priority/>
-            case 'scissors':
-                return <Image src={scissors} alt={'scissors'} style={{width: width / 1.89, height: width / 1.89}} priority/>
-            default:
-                return <Image src={leaf} alt={'leaf'} style={{width: width / 1.89, height: width / 1.89}} priority/>
+        if (choice in choices) {
+            const choiceItem = choices[choice as keyof typeof choices]
+    
+            return <Image src={choiceItem.image} alt={choice} width={0} height={0} style={{width: width / 1.89, height: width / 1.89}} priority/>
+        } 
+        else {
+            return <div className="text-red-500">Error</div>
         }
     }
 
     const Result = () => {
-
         switch (wichWin(props.playerChoice, props.aiChoice)) {
             case 0:
                 return <p className="text-[#FF3636]">Perdu</p>                
