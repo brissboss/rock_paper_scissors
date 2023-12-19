@@ -1,4 +1,4 @@
-import Title from "../text/Title"
+import Title from "@/app/component/text/Title"
 import ZoneTemplate from "./ZoneTemplate"
 
 export default function NewGameZone() {

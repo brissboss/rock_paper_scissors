@@ -2,7 +2,7 @@ import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
 
 import ZoneTemplate from "../ZoneTemplate"
-import Title from "../../text/Title"
+import Title from "@/app/component/text/Title"
 import leaf from '@/public/leaf.svg'
 import rock from '@/public/rock.svg'
 import scissors from '@/public/scissors.svg'
