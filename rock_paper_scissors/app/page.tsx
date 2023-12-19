@@ -1,15 +1,15 @@
 'use client'
 
-import { useRouter } from "next/navigation"
-import { useRef, useState } from "react"
+import { useState } from "react"
 
 import GameZoneUSer from "./component/zone/GameZone"
 import HistoryZone from "./component/zone/HistoryZone"
 import RulesZone from "./component/zone/RulesZone"
-import ResultZone from "./component/zone/result/DisplayResult"
 import Result from "./component/zone/result/ResultZone"
+import NewGameZone from "./component/zone/NewGameZone"
 
 export default function Home() {
+    const [openResult, setOpenResult] = useState<boolean>(false)
     const [playerChoice, setPlayerChoice] = useState<string>("")
     const [aiChoice, setAiChoice] = useState<string>("")
     const [keyHistory, setKeyHistory] = useState<number>(0)
@@ -27,9 +27,14 @@ export default function Home() {
             setPlayerChoice(choice)
             setAiChoice(res)
             setKeyHistory(prevKey => prevKey + 1)
+            setOpenResult(true)
         }
         else 
             console.error("The \"choice\" variable is incorrect\n", choice)
+    }
+
+    const replay = () => {
+        setOpenResult(false)
     }
 
     return (
@@ -49,13 +54,21 @@ export default function Home() {
                 "
             >
                 <RulesZone />
-                <Result 
-                    playerChoice={playerChoice}
-                    aiChoice={aiChoice}
-                />
+                {!openResult ? 
+                    <NewGameZone/>
+                    :
+                    <Result 
+                        playerChoice={playerChoice}
+                        aiChoice={aiChoice}
+                    />
+                }
                 <HistoryZone keyHistory={keyHistory}/>
             </div>
-            <GameZoneUSer selectChoice={(choice: string) => selectChoicePlayer(choice)} />
+            {!openResult ?
+                <GameZoneUSer selectChoice={(choice: string) => selectChoicePlayer(choice)} />
+                :
+                <div onClick={() => replay()} className="bg-red-500 px-2 py-1 mb-10 rounded-md cursor-pointer">Rejouer ?</div>
+            }
         </div>
     )
 }

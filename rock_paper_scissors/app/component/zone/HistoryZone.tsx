@@ -1,10 +1,11 @@
-import { RefObject, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 
 import leaf from '@/public/leaf.svg'
 import rock from '@/public/rock.svg'
 import scissors from '@/public/scissors.svg'
 
+import ZoneTemplate from "./ZoneTemplate"
 import { getGoodStorage } from "@/app/utils/getGoodStorage"
 import wichWin from "@/app/utils/wichWin"
 import ResultModule from "../ResultModule"
@@ -92,10 +93,7 @@ function History() {
     }, [])
 
     return (
-        <div 
-            className="
-            "
-        >
+        <div >
             {allGames.map((item, index) => {
                 if (!item.value)
                     return
@@ -115,34 +113,15 @@ type HistoryZoneProps = {
 
 export default function HistoryZone(props: HistoryZoneProps) {
     return (
-        <div
-            key={props.keyHistory}
-            className="
-                hidden 2xl:flex justify-center items-center
-                w-[90%] 2xl:w-[25%]
-                h-[100%]
-                text-black
-                pt-5
-            "
+        <ZoneTemplate
+            keyDiv={props.keyHistory}
         >
-            <div
-                className="
-                    w-[80%]
-                    h-full
-                    rounded-md
-                    px-4 py-2
-                    border-[5px] border-white
-                    overflow-auto
-                    text-white
-                "
-            >
-                <Title content="Historique"/>
+            <Title content="Historique"/>
                 <div className="flex justify-between py-4">
                     <p className="w-[33%] text-center text-xl font-medium">Vous</p>
                     <p className="w-[33%] text-center text-xl font-medium">IA</p>
                 </div>
-                <History/>
-            </div>
-        </div>
+            <History/>
+        </ZoneTemplate>
     )
 }

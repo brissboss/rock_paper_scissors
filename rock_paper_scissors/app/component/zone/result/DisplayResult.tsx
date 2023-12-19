@@ -1,11 +1,10 @@
 import { useEffect, useState, useRef } from "react"; 
 import Image from 'next/image'
 
-import ResultModule from "../../ResultModule";
+import ResultModule from "./ResultModule";
 import leaf from '@/public/leaf.svg'
 import rock from '@/public/rock.svg'
 import scissors from '@/public/scissors.svg'
-
 
 function wichWin(player: string, ai: string) {
     if (player === ai) 
@@ -61,11 +60,11 @@ export default function ResultZone(props: ResultZoneProps) {
 
         switch (wichWin(props.playerChoice, props.aiChoice)) {
             case 0:
-                return <p>Defeat</p>                
+                return <p className="text-[#FF3636]">Perdu</p>                
             case 1:
-                return <p>Win</p>
+                return <p className="text-[#2DBE44]">Gagné</p>
             case 2:
-                return <p>Equality</p>
+                return <p className="text-[#FFC436]">Égalité</p>
             default:
                 return null
         }
@@ -74,54 +73,68 @@ export default function ResultZone(props: ResultZoneProps) {
     return (
         <div
             className="
-                w-1/2 h-1/2
-                py-4
+                w-full h-full
                 flex flex-col justify-center items-center
+
+                relative
+
+                overflow-hidden
             "
         >
             <div 
                 ref={divRef}
                 className="
-                    flex justify-between 
+                    flex flex-col justify-start 
                     w-[90%] xl:w-[60%]
                     h-full
                 "
             >
                 <div 
                     className="
-                        w-full flex justify-center items-start mt-[10%]
+                        flex justify-center items-center
+                        h-1/3
 
+                        text-[3rem] lg:text-[5rem]
+
+                        animate-text
+
+                    "
+                >
+                    <Result/>
+                </div>
+
+                <div
+                    className="
+                        absolute top-1/3 left-0
+                        w-2/3
+
+                        animate-slide-in-left
                     "
                 >
                     <ResultModule
                         type={props.playerChoice}
                         size={width}
+                        direction="left"
                     >
                         {imageUser(props.playerChoice)}
                     </ResultModule>
                 </div>
                 <div
-                    className="bg-white w-[10px] h-full rotate-45 rounded-full"
-                ></div>
-                <div
                     className="
-                        w-full flex justify-center items-end mb-[10%]
+                        absolute top-2/3 right-0
+                        w-2/3
 
+                        animate-slide-in-right
                     "
                 >
                     <ResultModule
                         type={props.aiChoice}
                         size={width}
+                        direction="right"
                     >
                         {imageUser(props.aiChoice)}
                     </ResultModule>
                 </div>
-            </div>
-            <div
-                className="
-                "
-            >
-                <Result/>
             </div>
         </div>
     )
