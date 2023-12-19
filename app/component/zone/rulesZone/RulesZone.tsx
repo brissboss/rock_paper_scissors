@@ -47,9 +47,9 @@ export default function RulesZone() {
             />
             <RuleModule
                 nameChalOne="scissors"
-                nameChalTwo="rock"
+                nameChalTwo="leaf"
                 chalOne={<Image src={scissors} alt={'scissors'} style={{width: width / 1.89, height: width / 1.89}} priority width={0} height={0}/>}
-                chalTwo={<Image src={rock} alt={'rock'} style={{width: width / 1.89, height: width / 1.89}} priority width={0} height={0}/>}
+                chalTwo={<Image src={leaf} alt={'leaf'} style={{width: width / 1.89, height: width / 1.89}} priority width={0} height={0}/>}
                 pronoun={['Le', 'la']}
                 width={width}
             />

@@ -1,6 +1,8 @@
 type ButtonPrimaryProps = {
     name: string,
-    action: Function
+    action: Function,
+
+    styleSup?: string
 }
 
 export default function ButtonPrimary(props: ButtonPrimaryProps) {
@@ -10,7 +12,7 @@ export default function ButtonPrimary(props: ButtonPrimaryProps) {
     return (
         <div 
             onClick={handleClick}
-            className="
+            className={`
                 px-4 py-1.5
                 text-2xl
                 rounded-md
@@ -19,7 +21,8 @@ export default function ButtonPrimary(props: ButtonPrimaryProps) {
                 hover:bg-red-600
                 transition-all duration-200
                 cursor-pointer
-            "
+                text-center
+            ` + props.styleSup}
         >
             {props.name}
         </div>

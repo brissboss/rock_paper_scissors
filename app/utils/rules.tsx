@@ -67,3 +67,34 @@ export function wichWin(player: string, ai: string) {
 
     return 0
 }
+
+type allData = {
+    key: string,
+    value: string | null,
+}
+
+export function victory(data: allData[]) {
+    let victory = 0
+
+    data.map((item) => {
+        if (wichWin(item.value?.split('/')[0] || '', item.value?.split('/')[1] || '') === 1)
+            victory += 1
+    })
+
+    return victory
+}
+
+export function defeat(data: allData[]) {
+    let defeat = 0
+
+    data.map((item) => {
+        if (wichWin(item.value?.split('/')[0] || '', item.value?.split('/')[1] || '') === 0)
+            defeat += 1
+    })
+
+    return defeat
+}
+
+export function getRatio(data: allData[]) {
+    return (victory(data) / defeat(data)).toFixed(2)
+}

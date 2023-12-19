@@ -51,7 +51,7 @@ export default function HistoryLine(props: HistoryLineProps) {
             </div>
             <div className="flex justify-center items-center w-[33%]">
                 {wichWin(props.playerChoice, props.aiChoice) === 0 && <p>Perdu</p>}
-                {wichWin(props.playerChoice, props.aiChoice) === 1 && <p>Gagner</p>}
+                {wichWin(props.playerChoice, props.aiChoice) === 1 && <p>Gagné</p>}
                 {wichWin(props.playerChoice, props.aiChoice) === 2 && <p>Égalité</p>}
             </div>
             <div className="flex justify-center items-center w-[33%]">

@@ -22,10 +22,10 @@ export default function NewGameZone() {
                 className="
                     flex justify-center items-center 
                     h-full 
-                    text-center text-[1.5rem]
+                    text-center text-[1.3rem] xl:text-[1.7rem]
                 "
             >
-                Pour faire une partie faite votre choix parmis les boutons ci dessous
+                Pour faire une partie faites votre choix parmis les boutons ci-dessous
             </p>
         </ZoneTemplate>
     )
