@@ -12,7 +12,7 @@ npm run dev
 
 And access the url [http://localhost:3000](http://localhost:3000) with your browser to see the result or open [rock-paper-scissors](https://rock-paper-scissors-swart-theta.vercel.app)
 
-![](./public/screenshotDesktop.jpeg)
+![](./public/screenshot.jpeg)
 
 # Add new rules
 
