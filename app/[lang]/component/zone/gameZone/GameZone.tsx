@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react"
 import Image from 'next/image'
 
-import { choices } from '@/app/utils/rules'
-import ButtonPlayer from "@/app/component/button/ButtonPlayer"
+import { choices } from '@/app/[lang]/utils/rules'
+import ButtonPlayer from "@/app/[lang]/component/button/ButtonPlayer"
 
 type GameZoneUSerProps = {
     selectChoice: Function,
@@ -55,7 +55,7 @@ export default function GameZoneUSer(props: GameZoneUSerProps) {
                             action={(choice: string) => sendChoice(choice)}
                             key={index}
                         >
-                            <Image src={item.image} alt={item.name} style={{width: width / 1.89, height: width / 1.89}} priority/>
+                            <Image src={item.image} alt={item.name} style={{width: width / 1.89, height: width / 1.89}} priority width={0} height={0}/>
                         </ButtonPlayer>
                     )
                 })}

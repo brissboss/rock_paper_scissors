@@ -2,11 +2,14 @@ import { useEffect, useState, useRef } from "react";
 import Image from 'next/image'
 
 import ResultModule from "./ResultModule";
-import { choices, wichWin } from "@/app/utils/rules";
+import { choices, wichWin } from "@/app/[lang]/utils/rules";
+import { Dictionary } from "@/app/[lang]/dictionaries/interface"
 
 type ResultZoneProps = {
     playerChoice: string
     aiChoice: string
+
+    dict: Dictionary
 }
 
 export default function ResultZone(props: ResultZoneProps) {
@@ -39,11 +42,11 @@ export default function ResultZone(props: ResultZoneProps) {
     const GetTitle = () => {
         switch (wichWin(props.playerChoice, props.aiChoice)) {
             case 0:
-                return <p className="text-[#FF3636]">Perdu</p>                
+                return <p className="text-[#FF3636]">{props.dict.history.defeating}</p>                
             case 1:
-                return <p className="text-[#2DBE44]">Gagné</p>
+                return <p className="text-[#2DBE44]">{props.dict.history.winning}</p>
             case 2:
-                return <p className="text-[#FFC436]">Égalité</p>
+                return <p className="text-[#FFC436]">{props.dict.history.equality}</p>
             default:
                 return <p className="text-[#FF3636]">ERROR</p>
         }

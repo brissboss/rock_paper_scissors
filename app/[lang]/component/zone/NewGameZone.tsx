@@ -1,7 +1,13 @@
-import Title from "@/app/component/text/Title"
+import Title from '@/app/[lang]/component/text/Title'
 import ZoneTemplate from "./ZoneTemplate"
 
-export default function NewGameZone() {
+import { Dictionary } from '@/app/[lang]/dictionaries/interface'
+
+type Props = {
+    dict: Dictionary
+}
+
+export default function NewGameZone(props: Props) {
     return (
         <ZoneTemplate
             largeWidth
@@ -17,7 +23,7 @@ export default function NewGameZone() {
                 border-[5px] border-white
             "   
         >
-            <Title content="Pierre Feuille Ciseaux"/>
+            <Title content={props.dict.newGame.title}/>
             <p 
                 className="
                     flex justify-center items-center 
@@ -25,7 +31,7 @@ export default function NewGameZone() {
                     text-center text-[1.3rem] xl:text-[1.7rem]
                 "
             >
-                Pour faire une partie faites votre choix parmis les boutons ci-dessous
+                {props.dict.newGame.exp}
             </p>
         </ZoneTemplate>
     )

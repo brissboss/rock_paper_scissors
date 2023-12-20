@@ -1,0 +1,26 @@
+{
+    "history": {
+        "title": "Historique",
+        "backButton": "Retour",
+        "resetButton": "Remettre à zéro",
+        "ratio": "Ratio V/D",
+        "victory": "Victoire",
+        "defeat": "Défaite",
+        "you": "Vous",
+        "ai": "IA",
+        "winning": "Gagné",
+        "defeating": "Perdu",
+        "equality": "égalité"
+    },
+    "newGame": {
+        "title": "Pierre Feuille Ciseaux",
+        "exp": "Pour faire une partie faites votre choix parmis les boutons ci-dessous",
+        "replay": "Rejouer"
+    },
+    "rules": {
+        "title": "Règles",
+        "male": "Le",
+        "female": "La",
+        "win": "gagne contre"
+    }
+}

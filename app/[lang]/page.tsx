@@ -1,7 +1,10 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+
+import { getDictionary } from './dictionaries'
+import { Dictionary } from "./dictionaries/interface"
 
 import GameZoneUSer from "./component/zone/gameZone/GameZone"
 import HistoryZone from "./component/zone/historyZone/HistoryZone"
@@ -12,13 +15,30 @@ import ButtonPrimary from "./component/button/ButtonPrimary"
 
 import { choices } from "./utils/rules"
 
-export default function Home() {
+type PageProps = {
+    params: {
+        lang: string;
+    };
+};
+
+
+export default function Home(props: PageProps) {
+    const [dict, setDict] = useState<Dictionary>({} as Dictionary);
     const [openResult, setOpenResult] = useState<boolean>(false)
     const [playerChoice, setPlayerChoice] = useState<string>("")
     const [aiChoice, setAiChoice] = useState<string>('')
     const [keyHistory, setKeyHistory] = useState<number>(0)
 
     const router = useRouter()
+
+    useEffect(() => {
+        const loadDictionary = async () => {
+            const dictionary = await getDictionary(props.params.lang.split('-')[0]);
+            setDict(dictionary);
+        };
+
+        loadDictionary();
+    }, [props.params.lang]);
 
     const aiChoiceGenerator = () => {
         const keys = Object.keys(choices) as Array<keyof typeof choices>;
@@ -43,6 +63,10 @@ export default function Home() {
 
     const openHistory = () => { router.push('/history') }
 
+    if (Object.keys(dict).length === 0) {
+        return <div>...loading</div>
+    }
+
     return (
         <div
             className="
@@ -53,7 +77,7 @@ export default function Home() {
             "
         >
             <div className="2xl:hidden pt-4">
-                <ButtonPrimary name="Historique" action={() => openHistory()}/>
+                <ButtonPrimary name={dict.history.title} action={() => openHistory()}/>
             </div>
             
             <div
@@ -62,9 +86,9 @@ export default function Home() {
                     w-[90%] 2xl:w-[100%] h-[65%]
                 "
             >
-                <RulesZone />
-                { !openResult ? <NewGameZone/> : <Result playerChoice={playerChoice} aiChoice={aiChoice}/> }
-                <HistoryZone keyHistory={keyHistory}/>
+                <RulesZone dict={dict}/>
+                { !openResult ? <NewGameZone dict={dict}/> : <Result playerChoice={playerChoice} aiChoice={aiChoice} dict={dict}/> }
+                <HistoryZone keyHistory={keyHistory} dict={dict}/>
             </div>
 
             {!openResult ?
@@ -76,7 +100,7 @@ export default function Home() {
                         w-full h-[30%]
                     "
                 >
-                    <ButtonPrimary name="Rejouer ?" action={() => replay()}/>
+                    <ButtonPrimary name={dict.newGame.replay} action={() => replay()}/>
                 </div>
             }
         </div>
