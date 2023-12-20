@@ -3,30 +3,13 @@ import { useState, useEffect } from "react";
 import { getGoodStorage } from "@/app/[lang]/utils/localStorage"
 import { getRatio, victory, defeat } from "@/app/[lang]/utils/rules";
 import HistoryLine from "./HistoryLine";
+import Stat from "./Stats";
 
 import { Dictionary } from '@/app/[lang]/dictionaries/interface'
 
 type allData = {
     key: string,
     value: string | null,
-}
-
-type StatProps = {
-    title: string,
-    value: string
-}
-
-function Stat(props: StatProps) {
-    return (
-        <div className="flex justify-between">
-            <p className="w-[50%]">
-                {props.title}
-            </p>
-            <p className="w-[50%]">
-                {props.value}
-            </p>
-        </div>
-    )
 }
 
 type Prop = {
