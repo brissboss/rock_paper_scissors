@@ -12,6 +12,8 @@ npm run dev
 
 And access the url [http://localhost:3000](http://localhost:3000) with your browser to see the result or open [rock-paper-scissors](https://rock-paper-scissors-swart-theta.vercel.app)
 
+![](./public/screenshotDesktop.jpeg)
+
 # Add new rules
 
 To add new rules add elements like this to the [rules.tsx](./app/[lang]/utils/rules.tsx) file :
