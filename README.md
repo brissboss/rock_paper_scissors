@@ -10,4 +10,4 @@ To start the site, use the command
 npm run dev
 ```
 
-And access the url [http://localhost:3000](http://localhost:3000) with your browser to see the result or open [rock-paper-scissors-swart-theta.vercel.app](rock-paper-scissors-swart-theta.vercel.app)
+And access the url [http://localhost:3000](http://localhost:3000) with your browser to see the result or open [rock-paper-scissors-swart-theta.vercel.app]([rock-paper-scissors-swart-theta.vercel.app](https://rock-paper-scissors-swart-theta.vercel.app/en)https://rock-paper-scissors-swart-theta.vercel.app/en)
