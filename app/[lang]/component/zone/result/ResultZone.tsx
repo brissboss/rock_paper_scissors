@@ -2,10 +2,13 @@
 
 import ZoneTemplate from "../ZoneTemplate"
 import ResultZone from "./DisplayResult"
+import { Dictionary } from "@/app/[lang]/dictionaries/interface"
 
 type ResultProps = {
     playerChoice: string,
     aiChoice: string,
+
+    dict: Dictionary
 }
 
 export default function Result(props: ResultProps) {
@@ -23,7 +26,7 @@ export default function Result(props: ResultProps) {
                 border-[5px] border-white
             "    
         >
-            <ResultZone playerChoice={props.playerChoice} aiChoice={props.aiChoice} />
+            <ResultZone playerChoice={props.playerChoice} aiChoice={props.aiChoice} dict={props.dict}/>
         </ZoneTemplate>
     )
 }

@@ -1,7 +1,9 @@
 import { ReactNode } from "react"
 
-import { choices } from "@/app/utils/rules"
-import ButtonPlayer from "@/app/component/button/ButtonPlayer"
+import { choices } from "@/app/[lang]/utils/rules"
+import ButtonPlayer from "@/app/[lang]/component/button/ButtonPlayer"
+
+import { Dictionary } from '@/app/[lang]/dictionaries/interface'
 
 type RuleModuleProps = {
     nameChalOne: string,
@@ -13,6 +15,8 @@ type RuleModuleProps = {
     pronoun: [string, string]
 
     width: number
+
+    dict: Dictionary
 }
 
 export default function RuleModule(props: RuleModuleProps) {
@@ -37,7 +41,7 @@ export default function RuleModule(props: RuleModuleProps) {
                 </ButtonPlayer>
             </div>
             <div>
-                gagne contre {props.pronoun[1] ? props.pronoun[1] : 'la'}
+                {props.dict.rules.win} {props.pronoun[1] ? props.pronoun[1] : 'la'}
             </div>
             <div>
             <ButtonPlayer

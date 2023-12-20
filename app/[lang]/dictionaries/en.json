@@ -1,0 +1,26 @@
+{
+    "history": {
+        "title": "History",
+        "backButton": "Back",
+        "resetButton": "Reset",
+        "ratio": "Ratio W/L",
+        "victory": "Win",
+        "defeat": "Lose",
+        "you": "You",
+        "ai": "IA",
+        "winning": "Won",
+        "defeating": "Lost",
+        "equality": "Tie"
+    },
+    "newGame": {
+        "title": "Rock Paper Scissors",
+        "exp": "To start a game, select one of the buttons below",
+        "replay": "Replay"
+    },
+    "rules": {
+        "title": "Rules",
+        "male": "The",
+        "female": "The",
+        "win": "wins against"
+    }
+}
